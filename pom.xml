@@ -17,6 +17,13 @@
     <name>royal-game-of-ur</name>
     <description>Royal Game of Ur</description>
 
+    <repositories>
+        <repository>
+            <id>zomisnet</id>
+            <url>http://www.zomis.net/maven</url>
+        </repository>
+    </repositories>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
@@ -24,6 +31,16 @@
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>net.zomis</groupId>
+            <artifactId>fights</artifactId>
+            <version>0.2-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>net.zomis</groupId>
+            <artifactId>scorers</artifactId>
+            <version>0.2-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
