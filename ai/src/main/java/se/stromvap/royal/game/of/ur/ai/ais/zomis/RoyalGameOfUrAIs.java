@@ -1,4 +1,4 @@
-package se.stromvap.royal.game.of.ur.ai.ais.ur;
+package se.stromvap.royal.game.of.ur.ai.ais.zomis;
 
 import net.zomis.aiscores.FieldScoreProducer;
 import net.zomis.aiscores.ScoreConfigFactory;

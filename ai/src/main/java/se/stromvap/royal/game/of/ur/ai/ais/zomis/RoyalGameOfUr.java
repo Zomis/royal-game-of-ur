@@ -1,4 +1,4 @@
-package se.stromvap.royal.game.of.ur.ai.ais.ur;
+package se.stromvap.royal.game.of.ur.ai.ais.zomis;
 
 import java.util.Arrays;
 import java.util.Random;
