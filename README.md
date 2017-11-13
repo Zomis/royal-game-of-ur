@@ -2,9 +2,14 @@
 
 A very simple implementation of the Royal Game of Ur (https://en.wikipedia.org/wiki/Royal_Game_of_Ur)
 
-## How to run the server
+Can be run in three different modes:
+1. REST server
+2. gRPC server
+3. Standalone
 
-`mvn clean package && java -jar target/royal-game-of-ur-0.0.1-SNAPSHOT.jar`
+## How to run the REST server
+
+`mvn clean package && java -jar spring-boot/target/spring-boot-0.0.1-SNAPSHOT.jar`
 
 To start a new game:</br>
 `GET http://localhost:8080/new-game`
@@ -27,7 +32,48 @@ To move a random game piece:</br>
 To make the game play itself out by rolling and moving random game pieces until one player has won:</br>
 `GET http://localhost:8080/play`
 
-## How to create AIs and make em do battle
+## How to run the gRPC server and client
+
+### gRPC Server
+
+Find `UrGrpcServer` and run it. Now the server has started on `localhost:8081`
+
+### gRPC Client
+
+Download the code and run `mvn clean install`
+
+Add this Maven dependency:
+```
+<dependency>
+    <groupId>se.stromvap.royal.game.of.ur</groupId>
+    <artifactId>grpc</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+</dependency>
+```
+
+Implement your AI by using the interface `RemoteAi`. Start the client with the code below.
+(_Note that you need two players before the game will start_)
+
+```
+UrGrpcClient.playRoyalGameOfUr("localhost", 8081, new RemoteAi() {
+    @Override
+    public String getName() {
+        return "Patrik";
+    }
+
+    @Override
+    public GamePiece yourTurn(Game game) {
+        // Your AI code goes here
+    }
+
+    @Override
+    public void gameOver(Player winner) {
+
+    }
+});
+```
+
+## How to run AIs in Standalone mode
 
 Create a class that implements `se.stromvap.royal.game.of.ur.ai.Ai`.
 
@@ -35,8 +81,5 @@ Go to `se.stromvap.royal.game.of.ur.ai.AiArenaMain` and use your new AI against 
 
 Currently the `SimpleAi` has a win rate of 95% vs `RandomAi`.
 
-Good luck!
-
 ## TODO
-TODO: Make someone look at the code and improve it!</br>
 TODO: Create UI

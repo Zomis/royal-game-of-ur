@@ -1,13 +1,17 @@
 package se.stromvap.royal.game.of.ur;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import se.stromvap.royal.game.of.ur.model.FlowerTile;
 import se.stromvap.royal.game.of.ur.model.Game;
 import se.stromvap.royal.game.of.ur.model.GamePiece;
+import se.stromvap.royal.game.of.ur.model.Player;
 import se.stromvap.royal.game.of.ur.model.Tile;
 
 import java.util.List;
 
 public class GameUtil {
+    private static final Logger log = LoggerFactory.getLogger(GameUtil.class);
 
     public static boolean canMove(Game game, GamePiece gamePiece) {
         List<Tile> tiles = game.getBoard().getTiles().get(game.getStatus().getCurrentTurnPlayer());
@@ -47,5 +51,19 @@ public class GameUtil {
         }
 
         return true;
+    }
+
+    public static Player isAnyPlayerAWinner(Game game) {
+        if (game.getPlayer1().getGamePieces().isEmpty()) {
+            log.info("{} won!", game.getPlayer1().getName());
+            return game.getPlayer1();
+        }
+
+        if (game.getPlayer2().getGamePieces().isEmpty()) {
+            log.info("{} won!", game.getPlayer2().getName());
+            return game.getPlayer2();
+        }
+
+        return null;
     }
 }

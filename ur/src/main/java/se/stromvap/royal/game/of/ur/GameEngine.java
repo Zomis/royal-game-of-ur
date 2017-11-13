@@ -19,11 +19,16 @@ public class GameEngine {
 
     private Game game;
 
+    public GameEngine() {
+        log.info("Game Engine created");
+    }
+
     public Game newGame() {
         return newGame(new Player("Player 1"), new Player("Player 2"));
     }
 
     public Game newGame(Player player1, Player player2) {
+        log.info("Creating new game");
         player1.givePlayerPieces();
         player2.givePlayerPieces();
         game = new Game(player1, player2);
@@ -108,20 +113,6 @@ public class GameEngine {
         // If we get to here, the game piece we are trying to move is not on the board
         Tile newTile = tiles.get(latestRoll - 1);
         moveToTile(gamePiece, newTile);
-    }
-
-    public Player isAnyPlayerAWinner() {
-        if (game.getPlayer1().getGamePieces().isEmpty()) {
-            log.info("{} won!", game.getPlayer1().getName());
-            return game.getPlayer1();
-        }
-
-        if (game.getPlayer2().getGamePieces().isEmpty()) {
-            log.info("{} won!", game.getPlayer2().getName());
-            return game.getPlayer2();
-        }
-
-        return null;
     }
 
     private boolean canCurrentPlayerMoveAnyGamePiece() {

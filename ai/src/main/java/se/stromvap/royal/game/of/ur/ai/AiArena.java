@@ -4,6 +4,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import se.stromvap.royal.game.of.ur.GameEngine;
+import se.stromvap.royal.game.of.ur.GameUtil;
 import se.stromvap.royal.game.of.ur.model.Player;
 
 import java.util.HashMap;
@@ -26,7 +27,7 @@ public class AiArena {
             gameEngine.newGame(player1, player2);
 
             Player winner;
-            while ((winner = gameEngine.isAnyPlayerAWinner()) == null) {
+            while ((winner = GameUtil.isAnyPlayerAWinner(gameEngine.getGame())) == null) {
                 gameEngine.roll();
 
                 if (gameEngine.getStatus().hasMoved()) {
